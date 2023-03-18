@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             label2 = new Label();
             numericUpDown1 = new NumericUpDown();
             button1 = new Button();
@@ -49,41 +48,32 @@
             label4 = new Label();
             textBox2 = new TextBox();
             button14 = new Button();
-            label5 = new Label();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            button15 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(69, 20);
-            label1.TabIndex = 0;
-            label1.Text = "关机操作";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 41);
+            label2.Location = new Point(12, 17);
             label2.Name = "label2";
             label2.Size = new Size(114, 20);
             label2.TabIndex = 1;
-            label2.Text = "定时关机（秒）";
+            label2.Text = "定时关机（分）";
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(121, 39);
+            numericUpDown1.Location = new Point(121, 17);
+            numericUpDown1.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(89, 27);
+            numericUpDown1.Size = new Size(108, 27);
             numericUpDown1.TabIndex = 2;
             // 
             // button1
             // 
-            button1.Location = new Point(12, 72);
+            button1.Location = new Point(12, 48);
             button1.Name = "button1";
-            button1.Size = new Size(103, 38);
+            button1.Size = new Size(103, 37);
             button1.TabIndex = 3;
             button1.Text = "立刻关机";
             button1.UseVisualStyleBackColor = true;
@@ -91,9 +81,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(121, 72);
+            button2.Location = new Point(121, 48);
             button2.Name = "button2";
-            button2.Size = new Size(89, 38);
+            button2.Size = new Size(108, 37);
             button2.TabIndex = 4;
             button2.Text = "定时关机";
             button2.UseVisualStyleBackColor = true;
@@ -187,9 +177,9 @@
             // 
             // button10
             // 
-            button10.Location = new Point(12, 116);
+            button10.Location = new Point(12, 129);
             button10.Name = "button10";
-            button10.Size = new Size(103, 46);
+            button10.Size = new Size(103, 33);
             button10.TabIndex = 14;
             button10.Text = "更改uac";
             button10.UseVisualStyleBackColor = true;
@@ -197,9 +187,9 @@
             // 
             // button11
             // 
-            button11.Location = new Point(121, 116);
+            button11.Location = new Point(121, 129);
             button11.Name = "button11";
-            button11.Size = new Size(108, 46);
+            button11.Size = new Size(108, 33);
             button11.TabIndex = 15;
             button11.Text = "Internet选项";
             button11.UseVisualStyleBackColor = true;
@@ -207,9 +197,9 @@
             // 
             // button12
             // 
-            button12.Location = new Point(240, 116);
+            button12.Location = new Point(240, 129);
             button12.Name = "button12";
-            button12.Size = new Size(103, 46);
+            button12.Size = new Size(103, 33);
             button12.TabIndex = 16;
             button12.Text = "系统属性";
             button12.UseVisualStyleBackColor = true;
@@ -217,9 +207,9 @@
             // 
             // button13
             // 
-            button13.Location = new Point(347, 116);
+            button13.Location = new Point(347, 129);
             button13.Name = "button13";
-            button13.Size = new Size(103, 46);
+            button13.Size = new Size(103, 33);
             button13.TabIndex = 17;
             button13.Text = "系统版本";
             button13.UseVisualStyleBackColor = true;
@@ -247,29 +237,26 @@
             button14.Name = "button14";
             button14.Size = new Size(98, 38);
             button14.TabIndex = 20;
-            button14.Text = "button14";
+            button14.Text = "开始！";
             button14.UseVisualStyleBackColor = true;
             button14.Click += button14_Click;
             // 
-            // label5
+            // button15
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(628, 172);
-            label5.Name = "label5";
-            label5.Size = new Size(31, 20);
-            label5.TabIndex = 23;
-            label5.Text = "0%";
-            // 
-            // backgroundWorker1
-            // 
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            button15.Location = new Point(12, 91);
+            button15.Name = "button15";
+            button15.Size = new Size(217, 32);
+            button15.TabIndex = 21;
+            button15.Text = "button15";
+            button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(776, 201);
-            Controls.Add(label5);
+            ClientSize = new Size(776, 178);
+            Controls.Add(button15);
             Controls.Add(button14);
             Controls.Add(textBox2);
             Controls.Add(label4);
@@ -290,7 +277,6 @@
             Controls.Add(button1);
             Controls.Add(numericUpDown1);
             Controls.Add(label2);
-            Controls.Add(label1);
             Name = "Form1";
             Text = "windows小工具";
             Load += Form1_Load;
@@ -300,8 +286,6 @@
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private NumericUpDown numericUpDown1;
         private Button button1;
@@ -322,7 +306,6 @@
         private Label label4;
         private TextBox textBox2;
         private Button button14;
-        private Label label5;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button button15;
     }
 }

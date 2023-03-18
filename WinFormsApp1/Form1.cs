@@ -1,12 +1,4 @@
-using System;
-using System.IO;
-using System.ComponentModel.Design.Serialization;
-using System.Runtime.InteropServices;
-
 using System.Diagnostics;
-using System.Windows.Forms;
-using System.Reflection.Emit;
-using System.ComponentModel;
 
 namespace WinFormsApp1
 {
@@ -37,8 +29,6 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker1.WorkerSupportsCancellation = true;
 
         }
 
@@ -63,6 +53,8 @@ namespace WinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             string sb = numericUpDown1.Value.ToString();
+            int sss = int.Parse(sb) * 60;
+            sb = sss.ToString();
             h.StartInfo.FileName = "cmd";
             h.StartInfo.RedirectStandardOutput = true;
             h.StartInfo.UseShellExecute = false;
@@ -218,35 +210,27 @@ namespace WinFormsApp1
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
         }
-        private void InitializeBackGroundWorker()
-        {
-            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
-        }
+
+
 
         private void button14_Click(object sender, EventArgs e)
         {
-            backgroundWorker1.RunWorkerAsync();
+
             string str = textBox2.Text;
             h.StartInfo.FileName = "cmd";
             Cnwd();
             h.StandardInput.WriteLine("ping " + str + "&exit");
             string a = h.StandardOutput.ReadToEnd();
             MessageBox.Show(a);
-            backgroundWorker1.CancelAsync();
 
 
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void button15_Click(object sender, EventArgs e)
         {
-            while (true){
-                label5.Text = "«Î…‘∫Û.";
-                label5.Text = "«Î…‘∫Û..";
-                label5.Text = "«Î…‘∫Û...";
-                label5.Text = "«Î…‘∫Û....";
-            }
+            h.StartInfo.FileName = "cmd";
+            Cnwd();
+            h.StandardInput.WriteLine("shutdown -a &exit");
         }
-
-
     }
 }
