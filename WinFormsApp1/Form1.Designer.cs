@@ -46,6 +46,11 @@
             button11 = new Button();
             button12 = new Button();
             button13 = new Button();
+            label4 = new Label();
+            textBox2 = new TextBox();
+            button14 = new Button();
+            label5 = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -220,11 +225,54 @@
             button13.UseVisualStyleBackColor = true;
             button13.Click += button13_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(456, 102);
+            label4.Name = "label4";
+            label4.Size = new Size(268, 20);
+            label4.TabIndex = 18;
+            label4.Text = "ping测试（下方填网址，不要http！）";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(456, 135);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(203, 27);
+            textBox2.TabIndex = 19;
+            // 
+            // button14
+            // 
+            button14.Location = new Point(665, 129);
+            button14.Name = "button14";
+            button14.Size = new Size(98, 38);
+            button14.TabIndex = 20;
+            button14.Text = "button14";
+            button14.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(628, 172);
+            label5.Name = "label5";
+            label5.Size = new Size(31, 20);
+            label5.TabIndex = 23;
+            label5.Text = "0%";
+            // 
+            // backgroundWorker1
+            // 
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 186);
+            ClientSize = new Size(776, 201);
+            Controls.Add(label5);
+            Controls.Add(button14);
+            Controls.Add(textBox2);
+            Controls.Add(label4);
             Controls.Add(button13);
             Controls.Add(button12);
             Controls.Add(button11);
@@ -271,5 +319,10 @@
         private Button button11;
         private Button button12;
         private Button button13;
+        private Label label4;
+        private TextBox textBox2;
+        private Button button14;
+        private Label label5;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

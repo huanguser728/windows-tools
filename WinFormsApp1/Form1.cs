@@ -1,18 +1,45 @@
 using System;
 using System.IO;
 using System.ComponentModel.Design.Serialization;
+using System.Runtime.InteropServices;
 
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Reflection.Emit;
+using System.ComponentModel;
 
 namespace WinFormsApp1
 {
+
+
     public partial class Form1 : Form
     {
+
+        public void Cywd()
+        {
+            h.StartInfo.RedirectStandardOutput = true;
+            h.StartInfo.UseShellExecute = false;
+            h.StartInfo.RedirectStandardInput = true;
+            h.StartInfo.CreateNoWindow = true;
+            h.StartInfo.RedirectStandardOutput = true;
+            h.Start();
+        }
+        public void Cnwd()
+        {
+            h.StartInfo.RedirectStandardOutput = true;
+            h.StartInfo.UseShellExecute = false;
+            h.StartInfo.RedirectStandardInput = true;
+            h.StartInfo.CreateNoWindow = true;
+            h.StartInfo.RedirectStandardOutput = true;
+            h.Start();
+        }
         public Form1()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -191,5 +218,35 @@ namespace WinFormsApp1
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
         }
+        private void InitializeBackGroundWorker()
+        {
+            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync();
+            string str = textBox2.Text;
+            h.StartInfo.FileName = "cmd";
+            Cnwd();
+            h.StandardInput.WriteLine("ping " + str + "&exit");
+            string a = h.StandardOutput.ReadToEnd();
+            MessageBox.Show(a);
+            backgroundWorker1.CancelAsync();
+
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true){
+                label5.Text = "«Î…‘∫Û.";
+                label5.Text = "«Î…‘∫Û..";
+                label5.Text = "«Î…‘∫Û...";
+                label5.Text = "«Î…‘∫Û....";
+            }
+        }
+
+
     }
 }
