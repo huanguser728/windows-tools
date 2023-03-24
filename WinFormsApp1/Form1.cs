@@ -1,4 +1,17 @@
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Configuration;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace WinFormsApp1
 {
@@ -210,17 +223,19 @@ namespace WinFormsApp1
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
         }
+        public string str;
+        public string a;
 
 
-
+        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private void button14_Click(object sender, EventArgs e)
         {
 
-            string str = textBox2.Text;
+            str = textBox2.Text;
             h.StartInfo.FileName = "cmd";
             Cnwd();
             h.StandardInput.WriteLine("ping " + str + "&exit");
-            string a = h.StandardOutput.ReadToEnd();
+            a = h.StandardOutput.ReadToEnd();
             MessageBox.Show(a);
 
 
@@ -231,6 +246,13 @@ namespace WinFormsApp1
             h.StartInfo.FileName = "cmd";
             Cnwd();
             h.StandardInput.WriteLine("shutdown -a &exit");
+        }
+
+        private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string str = Interaction.InputBox("请输入查询网址", "查询", "在这里输入", -1, -1);
+            string name = config.AppSettings.Settings[str].Value;
+            MessageBox.Show(name);
         }
     }
 }
