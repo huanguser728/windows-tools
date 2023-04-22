@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Windows.Forms;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace WinFormsApp1
 {
@@ -24,8 +26,10 @@ namespace WinFormsApp1
         {
             h.StartInfo.RedirectStandardOutput = true;
             h.StartInfo.UseShellExecute = false;
+            h.StartInfo.UseShellExecute = false;
             h.StartInfo.RedirectStandardInput = true;
             h.StartInfo.CreateNoWindow = true;
+            h.StartInfo.RedirectStandardOutput = true;
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
         }
@@ -33,8 +37,10 @@ namespace WinFormsApp1
         {
             h.StartInfo.RedirectStandardOutput = true;
             h.StartInfo.UseShellExecute = false;
+            h.StartInfo.UseShellExecute = false;
             h.StartInfo.RedirectStandardInput = true;
             h.StartInfo.CreateNoWindow = true;
+            h.StartInfo.RedirectStandardOutput = true;
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
         }
@@ -93,7 +99,7 @@ namespace WinFormsApp1
             h.StandardInput.WriteLine("ipconfig&exit");
             h.StandardInput.AutoFlush = true;
             sb = h.StandardOutput.ReadToEnd();
-            MessageBox.Show(sb);
+            richTextBox1.Text = sb;
 
 
 
@@ -147,22 +153,7 @@ namespace WinFormsApp1
             h.StandardInput.WriteLine("start cmd & exit");
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            string into = "cmd";
-            string ss = " ";
-            h.StartInfo.FileName = "cmd";
-            h.StartInfo.RedirectStandardOutput = true;
-            h.StartInfo.UseShellExecute = false;
-            h.StartInfo.RedirectStandardInput = true;
-            h.StartInfo.CreateNoWindow = true;
-            h.StartInfo.RedirectStandardOutput = true;
-            h.Start();
-            into = textBox1.Text;
-            h.StandardInput.WriteLine(into + "&exit");
-            ss = h.StandardOutput.ReadToEnd();
-            MessageBox.Show(ss);
-        }
+
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -197,7 +188,7 @@ namespace WinFormsApp1
             h.StartInfo.CreateNoWindow = true;
             h.StartInfo.RedirectStandardOutput = true;
             h.Start();
-            h.StandardInput.WriteLine("inetcpl.cpl & exit");
+            h.StandardInput.WriteLine("shutdown /r /t 0  & exit");
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -230,13 +221,41 @@ namespace WinFormsApp1
         Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         private void button14_Click(object sender, EventArgs e)
         {
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("网址不能为空！！！");
+            }
+            else if(textBox2.Text == " ")
+            {
+                MessageBox.Show("网址不能为空！！！");
+            }
+            else
+            {
+                new ToastContentBuilder()
+            .AddArgument("action", "viewConversation")
+            .AddArgument("huang", 9813)
+            .AddText("操作正在进行")
+            .AddText("请稍等，程序可能卡死，不用关闭，花费的时间可能会比预期稍长，但我们将会尽快完成。")
+            .Show(toast =>
+            {
+                toast.ExpirationTime = DateTime.Now.AddSeconds(2);
+            });
+                str = textBox2.Text;
+                h.StartInfo.FileName = "cmd";
+                Cnwd();
+                h.StandardInput.WriteLine("ping " + str + "&exit");
+                h.StandardInput.Close();
+                a = h.StandardOutput.ReadToEnd();
+                new ToastContentBuilder()
+                .AddArgument("action", "viewConversation")
+                .AddArgument("huang", 9813)
+                .AddText("操作已经完成")
+                .AddText("您可以去输出框查看输出。")
+                .Show();
+                richTextBox1.Text = a;
+            }
+            
 
-            str = textBox2.Text;
-            h.StartInfo.FileName = "cmd";
-            Cnwd();
-            h.StandardInput.WriteLine("ping " + str + "&exit");
-            a = h.StandardOutput.ReadToEnd();
-            MessageBox.Show(a);
 
 
         }
@@ -248,11 +267,18 @@ namespace WinFormsApp1
             h.StandardInput.WriteLine("shutdown -a &exit");
         }
 
-        private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string str = Interaction.InputBox("请输入查询网址", "查询", "在这里输入", -1, -1);
-            string name = config.AppSettings.Settings[str].Value;
-            MessageBox.Show(name);
+
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            h.StartInfo.FileName = "cmd";
+            Cnwd();
+            h.StandardInput.WriteLine("slui 4 &exit");
         }
     }
 }
